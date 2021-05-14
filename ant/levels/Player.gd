@@ -34,13 +34,12 @@ func _process(delta):
 		$AnimatedSprite.play("walk")
 
 func get_input() -> void:
-	var dir = 0
-	if Input.is_action_pressed("right"):
-		dir += 1
-	if Input.is_action_pressed("left"):
-		dir -= 1
-	if dir != 0:
-		velocity.x = lerp(velocity.x, dir * move_speed, acceleration)
-		$AnimatedSprite.flip_h = dir == -1
+	var movement_vector = Vector2.ZERO
+	movement_vector.x -= Input.get_action_strength("left")
+	movement_vector.x += Input.get_action_strength("right")
+	
+	if movement_vector.x != 0:
+		velocity.x = lerp(velocity.x, move_speed * movement_vector.x, acceleration)
+		$AnimatedSprite.flip_h = movement_vector.x < 0
 	else:
 		velocity.x = lerp(velocity.x, 0, friction)
