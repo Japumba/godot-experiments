@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/fruits/apple.png" type="Texture" id=1]
+
+[node name="Fruit" type="Node2D"]
+
+[node name="apple" type="Sprite" parent="."]
+position = Vector2( -0.290634, 0.103607 )
+texture = ExtResource( 1 )
